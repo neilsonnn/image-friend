@@ -10,6 +10,7 @@ import {
   nextIndex,
   requestPath
 } from "../asset-pipeline/request-metadata.mjs";
+import { pathToFileURL } from "node:url";
 
 function usage() {
   return [
@@ -64,7 +65,7 @@ async function main() {
   }, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);

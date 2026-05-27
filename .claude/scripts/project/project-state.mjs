@@ -17,6 +17,7 @@ import {
   latestIndexed,
   parseIndexedName
 } from "../asset-pipeline/request-metadata.mjs";
+import { pathToFileURL } from "node:url";
 
 const PROJECT_DIRS = ["source", "output", "output/world", "output/sfx"];
 const RESERVED_OUTPUT_DIRS = new Set(["world", "sfx"]);
@@ -257,7 +258,7 @@ async function main() {
   console.log(JSON.stringify(state, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);

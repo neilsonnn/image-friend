@@ -21,6 +21,7 @@ import {
   requestMetadataFiles,
   requestPath
 } from "../asset-pipeline/request-metadata.mjs";
+import { pathToFileURL } from "node:url";
 
 const ENDPOINT = "fal-ai/elevenlabs/sound-effects/v2";
 const DEFAULT_OUTPUT_FORMAT = "mp3_44100_128";
@@ -456,7 +457,7 @@ async function main() {
   console.log(JSON.stringify(result, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);
