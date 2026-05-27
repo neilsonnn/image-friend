@@ -4,6 +4,7 @@ import {
   parseArgs,
 } from "./fal-queue.mjs";
 import { runFalImageTo3DProvider } from "./fal-3d-provider.mjs";
+import { pathToFileURL } from "node:url";
 
 export const HUNYUAN_3D_ENDPOINT = "fal-ai/hunyuan3d-v3/image-to-3d";
 export const HUNYUAN_3D_PROVIDER = "hunyuan";
@@ -130,7 +131,7 @@ async function main() {
   console.log(JSON.stringify(summary, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);

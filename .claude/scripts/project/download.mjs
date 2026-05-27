@@ -7,6 +7,7 @@ import {
   parseArgs,
   pathExists
 } from "../asset-pipeline/fal-queue.mjs";
+import { pathToFileURL } from "node:url";
 
 const ALLOWED_ROOTS = ["worlds", "input"];
 
@@ -69,7 +70,7 @@ async function main() {
   }, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);

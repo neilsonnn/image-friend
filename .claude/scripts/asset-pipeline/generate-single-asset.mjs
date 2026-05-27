@@ -46,6 +46,7 @@ import {
   parseIndexedName,
   requestPath
 } from "./request-metadata.mjs";
+import { pathToFileURL } from "node:url";
 
 const IMAGE_EXTENSIONS = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", ".webp"]);
 const MODEL_EXTENSIONS = new Set([".blend", ".fbx", ".glb", ".obj", ".stl", ".usdz"]);
@@ -628,7 +629,7 @@ async function main() {
   console.log(JSON.stringify(result, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);

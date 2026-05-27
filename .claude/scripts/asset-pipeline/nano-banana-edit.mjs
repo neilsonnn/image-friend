@@ -11,6 +11,7 @@ import {
   writeJson
 } from "./fal-queue.mjs";
 import { buildRequestSummary, requestPath } from "./request-metadata.mjs";
+import { pathToFileURL } from "node:url";
 
 const ENDPOINT = "fal-ai/nano-banana-2/edit";
 
@@ -108,7 +109,7 @@ async function main() {
   console.log(JSON.stringify(summary, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);
