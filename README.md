@@ -29,6 +29,43 @@ You can embed `image-blaster` under the assets of *any game engine, DCC software
 1. Unity, Unreal, or Godot game engine
 2. Blender, 3DS Max, or Maya or other DCC software
 3. Three.js web app or Electron app
+4. CADBuildr Prototype desktop app via its streamable-HTTP MCP server
+
+### CADBuildr Prototype MCP bridge
+
+This fork includes a CADBuildr bridge so an image-blaster world can become the
+backdrop for CADBuildr-generated geometry. The bridge talks to the running
+CADBuildr Prototype desktop app MCP server; it does not fake the CAD runtime.
+
+1. Start CADBuildr Prototype and sign in.
+2. In Prototype Settings, copy the MCP URL or let the bridge discover the
+   `prototype-mcp.json` file written by the app.
+3. From this repo, verify connectivity:
+
+```sh
+node .claude/scripts/cadbuildr/prototype-mcp.mjs status
+node .claude/scripts/cadbuildr/prototype-mcp.mjs tools
+```
+
+If discovery is not automatic, set:
+
+```sh
+export CADBUILDR_PROTOTYPE_MCP_URL="http://127.0.0.1:<port>/mcp"
+```
+
+To scaffold and run the chess/table/chair demo prompt against a generated
+image-blaster world:
+
+```sh
+node .claude/scripts/cadbuildr/prototype-mcp.mjs chess-demo \
+  --workspace "$(pwd)/cadbuildr-chess-world-workspace" \
+  --world "forest-chess-world"
+```
+
+Use `--dry-run` to only create the workspace and `PROMPT.md` without calling the
+MCP server. The intended output is a static `site/` folder with a GitHub
+Pages-ready web scene that loads the image-blaster world and places CADBuildr
+chess/table/chair assets in it.
 
 ## Advanced
 

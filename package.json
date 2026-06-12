@@ -9,6 +9,7 @@
     "build": "bun --cwd=app run build",
     "preview": "bun --cwd=app run preview",
     "test": "bun --cwd=app run test",
-    "typecheck": "bun --cwd=app run typecheck"
+    "typecheck": "bun --cwd=app run typecheck",
+    "cadbuildr:mcp": "node .claude/scripts/cadbuildr/prototype-mcp.mjs"
   }
 }

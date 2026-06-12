@@ -6,6 +6,9 @@ worlds/*
 input/*
 !input/.gitkeep
 
+# CADBuildr generated workspaces
+cadbuildr-*-workspace/
+
 # App build output
 node_modules/
 app/dist/

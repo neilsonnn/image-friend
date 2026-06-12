@@ -8,6 +8,7 @@
       "Skill(image-blast-sfx)",
       "Skill(image-blast-plate)",
       "Skill(image-blast-image-edit)",
+      "Skill(image-blast-cadbuildr)",
       "Skill(image-blast-wildcard)",
       "Bash(ls:*)",
       "Bash(node .claude/scripts/**:*)",
