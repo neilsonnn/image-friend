@@ -55,7 +55,7 @@ async function main() {
   console.log(JSON.stringify({ action: "deleted", path: relative, recursive }, null, 2));
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (import.meta.url === (await import("node:url")).pathToFileURL(process.argv[1]).href) {
   main().catch((error) => {
     console.error(error.message);
     process.exit(1);
